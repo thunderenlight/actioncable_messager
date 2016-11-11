@@ -6,6 +6,8 @@ class PersonalMessagesController < ApplicationController
 	end
 
 	def create
+		@conversation ||= Conversation.create(author_id: current_user.id,
+												receiver_id: @receiver.id)
 		@personal_message = current_user.personal_messages.build(personal_message_params)
 		@personal_message.conversation_id = @conversation.id
 		@personal_message.save!
@@ -15,7 +17,7 @@ class PersonalMessagesController < ApplicationController
 	end
 
 	private
-	
+
 	def personal_messages_params
 		params.require(:personal_message).permit(:body)
 	end
