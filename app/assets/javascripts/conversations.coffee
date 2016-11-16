@@ -7,6 +7,8 @@ jQuery(document).on 'turbolinks:load', ->
 		App.personal_chat = App.cable.subscriptions.create {
 			channel: "NotificationsChannel"
 		},
+		send_message: (message, conversation_id) ->
+			@perform 'send_message', message: message, conversation_id: conversation_id
 		connected: ->
 			# Called when the subscription is ready for use the server
 
