@@ -17,13 +17,8 @@ jQuery(document).on 'turbolinks:load', ->
 
 		received: (data) ->
 			# Called when data is received
-		if messages.length > 0
-			messages_to_bottom()
-			$('#new_personal_message').submit (e) ->
-				$this = $(this)
-				textarea = $this.find('#personal_message_body')
-				if $.trim(textarea.val()).length > 1
-					App.personal_chat.send_message textarea.val(), $this.find('#conversation_id').val()
-					textarea.val('')
-				e.preventDefault()
-				return false
+			if messages.size() > 0 && messages.data('conversation_id') is data['conversation_id']
+				messages.append data['message']
+				messages_to_bottom()
+			else
+				$('body').append(data['notification']) if data['notification']
