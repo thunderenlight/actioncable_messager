@@ -1,0 +1,11 @@
+I"(function() {
+  jQuery(document).on('turbolinks:load', function() {
+    var messages, messages_to_bottom;
+    messages_to_bottom = function() {
+      return messages.scrollTop(messages.prop("scrollHeight"));
+    };
+    return messages = $('#');
+  });
+
+}).call(this);
+:ET

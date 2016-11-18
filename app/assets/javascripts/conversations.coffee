@@ -21,4 +21,9 @@ jQuery(document).on 'turbolinks:load', ->
 				messages.append data['message']
 				messages_to_bottom()
 			else
+				$.getScript('/conversations') if $('#conversations').size() > 0
 				$('body').append(data['notification']) if data['notification']
+	
+	$(document).on 'click', '#notification .close', ->
+		$(this).parents('#notification').fadeOut(1000)
+
