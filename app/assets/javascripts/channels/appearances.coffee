@@ -8,3 +8,6 @@ jQuery(document).on 'turbolinks:load', ->
 
 
 	received: (data) ->
+		user = $(".user-#{data['user_id']}")
+		user.toggleClass 'online', data['online']
+		
