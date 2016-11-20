@@ -11,7 +11,6 @@ class PersonalMessagesController < ApplicationController
 											  receiver_id: @receiver.id)
 		@personal_message = current_user.personal_messages.build(personal_message_params)
 		@personal_message.conversation_id = @conversation.id
-		puts "online_stat********"
 		@personal_message.save!
 
 		flash[:success] = "Your message was sent!"
